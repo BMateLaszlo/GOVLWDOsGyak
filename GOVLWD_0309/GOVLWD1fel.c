@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+int main(void)
+{
+	int status;
+
+	if ( (status = system("date")) <0)
+	perror("system() error");
+
+	
+	if (WIFEXITED(status))
+	printf("Normális befejezés,visszaadott érték = %d\n",WEXITSTATUS(status));
+
+	if ( ( status = system("govlwd")) < 0)
+		perror("system() error");
+
+	if (WIFEXITED(status))
+		printf("Normális befejeződés, visszaadott érték = %d\n",WEXITSTATUS(status));
+
+
+	return (0);
+}
+
